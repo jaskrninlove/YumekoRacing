@@ -97,3 +97,13 @@ canvas.addEventListener("mousedown",e=>{if(e.clientX<W*.35)left();else if(e.clie
 window.addEventListener("keydown",e=>{if(e.key==="ArrowLeft")left();if(e.key==="ArrowRight")right();if(e.key===" ")nitroFn();});
 startBtn.onclick=start;restartBtn.onclick=start;submitBtn.onclick=()=>{const payload={type:"racing_score",chat_id:chatId,user_id:userId,score,coins,distance:Math.floor(distance),level};if(tg?.sendData){tg.sendData(JSON.stringify(payload));tg.close();}else alert(JSON.stringify(payload,null,2));};
 bg();car(W/2,H-104,"#0ea5e9",0.82,true);
+
+document.getElementById("leftBtn")
+.addEventListener("touchstart", () => {
+   moveLeft();
+});
+
+document.getElementById("rightBtn")
+.addEventListener("touchstart", () => {
+   moveRight();
+});
