@@ -1,1 +1,9 @@
-{"scripts":{"build":"echo static build"},"dependencies":{},"devDependencies":{}}
+{
+  "scripts": {
+    "build": "echo static build"
+  },
+  "dependencies": {
+    "mongodb": "^6.8.0"
+  },
+  "devDependencies": {}
+}
