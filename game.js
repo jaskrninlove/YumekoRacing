@@ -371,32 +371,43 @@ function drawControlsHint() {
 }
 
 function hud() {
-  rr(14, 14, 150, 82, 18, "rgba(3,7,18,.58)");
   ctx.fillStyle = "#fff";
-  ctx.font = "900 16px Arial";
+  ctx.font = "900 15px Arial";
   ctx.textAlign = "left";
-  ctx.fillText("SCORE " + score, 28, 40);
-  ctx.fillText("COINS " + coins, 28, 63);
-  ctx.fillText("NITRO " + nitro, 28, 86);
+  ctx.shadowColor = "rgba(0,0,0,.7)";
+  ctx.shadowBlur = 6;
 
-  rr(W - 120, 14, 104, 52, 17, "rgba(255,255,255,.9)");
+  ctx.fillText("SCORE " + score, 18, 36);
+  ctx.fillText("COINS " + coins, 18, 58);
+  ctx.fillText("NITRO " + nitro, 18, 80);
+
+  ctx.shadowBlur = 0;
+
+  ctx.beginPath();
+  ctx.arc(W - 48, 44, 34, 0, Math.PI * 2);
+  ctx.fillStyle = "rgba(255,255,255,.88)";
+  ctx.fill();
+
   ctx.fillStyle = "#0b1020";
-  ctx.font = "1000 18px Arial";
+  ctx.font = "1000 15px Arial";
   ctx.textAlign = "center";
-  ctx.fillText("LV " + level, W - 68, 47);
-  ctx.font = "900 20px Arial";
-  ctx.fillText(soundEnabled ? "🔊" : "🔇", W - 30, 92);
+  ctx.fillText("L " + level, W - 48, 50);
+
+  ctx.font = "900 18px Arial";
+  ctx.fillText(soundEnabled ? "🔊" : "🔇", W - 48, 92);
 
   if (frame < 180) {
     ctx.globalAlpha = 1 - frame / 180;
-    rr(W / 2 - 120, H - 148, 240, 42, 18, "rgba(0,0,0,.45)");
     ctx.fillStyle = "#fff";
     ctx.font = "800 14px Arial";
-    ctx.fillText("Tap buttons / Swipe • Double tap Nitro", W / 2, H - 122);
+    ctx.textAlign = "center";
+    ctx.shadowColor = "rgba(0,0,0,.7)";
+    ctx.shadowBlur = 5;
+    ctx.fillText("Tap buttons / Swipe • Double tap Nitro", W / 2, H - 130);
+    ctx.shadowBlur = 0;
     ctx.globalAlpha = 1;
   }
 }
-
 function lvl() {
   const nl = Math.floor(distance / 360) + 1;
   if (nl !== level) {
