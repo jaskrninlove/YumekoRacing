@@ -21,16 +21,20 @@ export default async function handler(req, res) {
     const rewardCoins = Math.min(700, 25 + coins * 6 + Math.floor(score / 180));
     const rewardXp = Math.min(300, 12 + level * 6 + Math.floor(distance / 110));
 
-    const text =
-      `🏁 <b>Racing Score Submitted</b>\\n\\n` +
-      `👤 Player ID: <code>${userId}</code>\\n` +
-      `🏆 Score: <b>${score}</b>\\n` +
-      `🛣 Distance: <b>${distance}m</b>\\n` +
-      `🔥 Level: <b>${level}</b>\\n` +
-      `🪙 Coins Collected: <b>${coins}</b>\\n\\n` +
-      `🎁 <b>Rewards</b>\\n\\n` +
-      `🪙 +<b>${rewardCoins}</b> Coins\\n` +
-      `⭐ +<b>${rewardXp}</b> XP`;
+    const text = `
+🏁 <b>Racing Score Submitted</b>
+
+👤 Player ID: <code>${userId}</code>
+🏆 Score: <b>${score}</b>
+🛣 Distance: <b>${distance}m</b>
+🔥 Level: <b>${level}</b>
+🪙 Coins Collected: <b>${coins}</b>
+
+🎁 <b>Rewards</b>
+
+🪙 +<b>${rewardCoins}</b> Coins
+⭐ +<b>${rewardXp}</b> XP
+`;
 
     await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
       method: "POST",
