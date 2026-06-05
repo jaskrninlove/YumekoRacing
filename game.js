@@ -289,7 +289,11 @@ function spawnObs() {
 
 function spawnCoin() {
   const l = Math.floor(Math.random() * 3);
-  coinItems.push({ x: lanes[l], y: -40, spin: 0 });
+  coinItems.push({
+    x: lanes[l],
+    y: -40,
+    spin: 0
+  });
 }
 
 function coin(c) {
@@ -356,18 +360,7 @@ function parts() {
 }
 
 function drawControlsHint() {
-  if (!running) return;
-  ctx.globalAlpha = .65;
-  rr(18, H - 96, 72, 72, 36, "rgba(0,0,0,.42)");
-  rr(W - 90, H - 96, 72, 72, 36, "rgba(0,0,0,.42)");
-  ctx.globalAlpha = 1;
-  ctx.fillStyle = "#fff";
-  ctx.font = "900 32px Arial";
-  ctx.textAlign = "center";
-  ctx.textBaseline = "middle";
-  ctx.fillText("‹", 54, H - 60);
-  ctx.fillText("›", W - 54, H - 60);
-  ctx.textBaseline = "alphabetic";
+  // HTML buttons already show controls, so no canvas duplicate buttons.
 }
 
 function hud() {
@@ -449,7 +442,7 @@ function loop() {
     ctx.fillRect(0, 0, W, H);
   }
 
-  car(carX, H - 104, "#0ea5e9", .82, true);
+  car(carX, H - 104, "#0ea5e9", .62, true);
   parts();
   hud();
   drawControlsHint();
@@ -517,16 +510,25 @@ window.addEventListener("keydown", e => {
   if (e.key === " ") nitroFn();
 });
 
-leftBtn.addEventListener("click", left);
-rightBtn.addEventListener("click", right);
+leftBtn.addEventListener("click", (e) => {
+  e.stopPropagation();
+  left();
+});
 
-leftBtn.addEventListener("touchstart", e => {
+rightBtn.addEventListener("click", (e) => {
+  e.stopPropagation();
+  right();
+});
+
+leftBtn.addEventListener("touchstart", (e) => {
   e.preventDefault();
+  e.stopPropagation();
   left();
 }, { passive: false });
 
-rightBtn.addEventListener("touchstart", e => {
+rightBtn.addEventListener("touchstart", (e) => {
   e.preventDefault();
+  e.stopPropagation();
   right();
 }, { passive: false });
 
